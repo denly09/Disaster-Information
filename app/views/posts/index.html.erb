@@ -18,7 +18,9 @@
       <td>
         <%= link_to 'Show', post_path(post) %>
         <%= link_to 'Edit', edit_post_path(post) %>
+        <%= link_to 'comments', post_comments_path(post) %>
         <%= button_to 'Delete', post_path(post), method: :delete %>
+
       </td>
     </tr>
   <% end %>
