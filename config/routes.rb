@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
 
   root "home#index"
-  resources :posts
+  get "home/about"
   resources :posts do
-    resources :comments
     resources :comments, expect: :show
   end
+  resources :categories
 end
 
