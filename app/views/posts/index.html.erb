@@ -6,11 +6,13 @@
   <td>content</td>
   <td>user</td>
   <td>address</td>
+  <td>Category</td>
   <td>action</td>
   </thead>
   <% @posts.each do |post| %>
     <tr>
       <td><%= post.id %></td>
+      <td><%= post.categories.pluck(:name).join(',') %></td>
       <td><%= post.title %></td>
       <td><%= post.content %></td>
       <td><%= post.address %></td>
