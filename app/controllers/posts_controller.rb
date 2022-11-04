@@ -4,7 +4,8 @@ class PostsController < ApplicationController
   before_action :validate_post_owner, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.includes(:user, :categories).all
+    @posts = Post.includes(:user, :categories).order(comments_count: :desc).all
+    @hot_posts = Post.order(comments_count: :desc).limit(3).select{ |post| post.comments_count >= 1 }
   end
 
   def new
@@ -22,6 +23,7 @@ class PostsController < ApplicationController
   end
 
   def show
+
   end
 
   def edit
@@ -41,7 +43,6 @@ class PostsController < ApplicationController
     else @post.destroy
     end
     redirect_to posts_path
-
   end
 
   private
