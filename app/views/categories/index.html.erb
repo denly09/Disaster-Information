@@ -4,10 +4,12 @@
   <% @categories.each do |category| %>
     <li>
       <%= category.name %>
-      <%= link_to :edit, edit_category_path(category) %>
-      <%= button_to :delete, category_path(category), method: :delete %>
+      <%= link_to :edit, edit_category_path(category), class: "btn btn-secondary"  %>
+      <%= button_to :delete, category_path(category), method: :delete, class: "btn btn-danger" %>
     </li>
   <% end %>
 </ul>
 
-<%= link_to 'new', new_category_path %>
+<%= link_to 'New ', new_category_path, class:"btn btn-primary" %>
+
+<%= link_to 'Create Disaster Information', new_post_path, class:"btn btn-primary" %>

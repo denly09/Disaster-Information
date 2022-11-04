@@ -1,4 +1,9 @@
+<div class="container">
 <h1>Distaster Information</h1>
+
+
 <%= render partial: 'form', locals: { post: @post } %>
 
-<%=  link_to 'Disaster Information List', posts_path %>
+<%=  link_to 'Disaster Information List', posts_path, class: "btn btn-info" %>
+
+</div>

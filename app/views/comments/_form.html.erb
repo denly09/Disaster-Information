@@ -6,9 +6,11 @@
       <% end %>
     </ul>
   <% end %>
-  <div>
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+
+ <div class="form-control">
+  <div class="mb-4" >
+    <%= form.text_area :content, class: "form-control", placeholder: "Leave a comment here", style: "height: 100px width: 50px" %>
   </div>
+</div>
   <%= form.submit %>
 <% end %>

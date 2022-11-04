@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:edit, :update, :destroy]
   def index
     @comments = @post.comments
+
   end
 
   def new
@@ -30,6 +31,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
+    @post.user == current_user
     redirect_to post_comments_path(@post)
   end
 
@@ -44,6 +46,7 @@ class CommentsController < ApplicationController
   end
 
   def params_comment
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content).merge(post_id: params[:post_id])
+
   end
 end
