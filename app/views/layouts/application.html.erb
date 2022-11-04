@@ -15,11 +15,11 @@
           <div class="container-fluid">
             <a class="navbar-brand">Disaste&#x1D19; Info</a>
             <ul class="nav nav-pills">
-              <li class="nav-item"><%= link_to "Home", root_path %></li>
-              <br>
               <li class="nav-item">
-                <%= link_to "Login", new_user_session_path unless user_signed_in? %>
-                <%= button_to "Log Out", destroy_user_session_path, method: :delete if user_signed_in?%>
+                <%= link_to "Home", root_path, class: "btn btn-primary" %></li>
+                <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary" %>
+                <%= link_to "Login", new_user_session_path, class: "btn btn-primary" unless user_signed_in?  %></li>
+              <%= button_to "Log Out", destroy_user_session_path,  method: :delete, class: "btn btn-primary" if user_signed_in?%>
              </li>
             </ul>
           </div>
@@ -38,4 +38,13 @@
 
     <%= yield %>
   </body>
+
+  <footer class="page-footer font-small blue pt-4">
+
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+      <a> <%= link_to 'DisasteR Info', root_path  %></a>
+    </div>
+
+  </footer>
+
 </html>
