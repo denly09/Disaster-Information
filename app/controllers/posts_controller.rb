@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :validate_post_owner, only: [:edit, :update, :destroy]
+  before_action :set_categories
 
   def index
     @posts = Post.includes(:user, :categories).order(comments_count: :desc).all
@@ -60,5 +61,9 @@ class PostsController < ApplicationController
       flash[:notice] = 'the post not belongs to you'
       redirect_to posts_path
     end
+  end
+
+  def set_categories
+    @categories = Category.all
   end
 end
