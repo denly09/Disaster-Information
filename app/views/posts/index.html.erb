@@ -1,51 +1,38 @@
 <div class="container ">
 <h1>Disaster Information</h1>
 </div>
-<div class="container">
 
-<%= link_to "Post", new_post_path, class: "btn btn-primary" %>
-
-
-</div>
 <div class="container">
   <table class="table table-bordered table-info table-striped">
     <thead>
-
-    <th colspan="2">Id</th>
+    <th colspan="2">Uniquie Id</th>
     <th>Category</th>
     <th>Title</th>
     <th>Content</th>
     <th>Address</th>
     <th>E-mail</th>
     <th>Comment</th>
-    <th colspan="4">Action</th>
+    <th colspan="3">Action</th>
     <th>Delete</th>
     </thead>
-
-
     <% @posts.each do |post| %>
       <tr>
         <td><%= "hot" if @hot_posts == post.id %><%= image_tag ('hot-2.png'), width: "90", height: "70" if @hot_posts.include?(post)%></td>
-        <td><%= post.id %></td>
+        <td><%= post.unique_num %></td>
         <td><%= post.categories.pluck(:name).join(',') %></td>
         <td><%= post.title %></td>
         <td><%= post.content %></td>
         <td><%= post.address %></td>
         <td><%= post.user.email %></td>
         <td><%= post.comments_count %></td>
-
-
-
         <td><%= link_to 'Show', post_path(post),  class: "btn btn-secondary" %></td>
         <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-secondary" if post.user == current_user %></td>
         <td><%= link_to 'Comment', post_comments_path(post),  class: "btn btn-secondary" %></td>
-        <td><%= link_to 'New comment', new_post_comment_path(post),  class: "btn btn-secondary" %></td>
+<!--        <td><%#= link_to 'New comment', new_post_comment_path(post),  class: "btn btn-secondary" %></td>-->
         <td><%= button_to 'Delete', post_path(post), method: :delete,  class: "btn btn-danger" if post.user == current_user %></td>
-
       </tr>
     <% end %>
   </table>
 
-<%= link_to 'Create New Disaster Information', new_post_path %>
-
+<%= link_to 'New', new_post_path, class: "btn btn-primary" %>
 </div>

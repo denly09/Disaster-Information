@@ -9,11 +9,10 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 
-
       <header>
-        <nav class="navbar navbar-light bg-light ">
+        <nav class="navbar navbar-light bg-dark ">
           <div class="container-fluid">
-            <a class="navbar-brand">Disaste&#x1D19; Info</a>
+            <a class="navbar-brand "><%= link_to 'DisasteR Info', root_path %></a>
             <ul class="nav nav-pills">
               <li class="nav-item">
                 <%= link_to "Home", root_path, class: "btn btn-primary" %></li>
@@ -25,26 +24,21 @@
           </div>
         </nav>
       </header>
-
   </head>
 
 
-
-
   <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-
-    <%= yield %>
+    <div class="container">
+      <p class="alert"><%= alert %></p>
+      <p class="notice"><%= notice %></p>
+      <%= yield %>
+    </div>
   </body>
 
   <footer class="page-footer font-small blue pt-4">
-
     <div class="footer-copyright text-center py-3">© 2020 Copyright:
       <a> <%= link_to 'DisasteR Info', root_path  %></a>
     </div>
-
   </footer>
 
 </html>
