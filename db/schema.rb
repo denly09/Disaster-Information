@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_103908) do
     t.datetime "delete_at"
     t.integer "comments_count", default: 0
     t.string "unique_num"
+    t.string "ip_address"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
