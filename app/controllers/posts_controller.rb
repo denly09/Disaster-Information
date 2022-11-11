@@ -18,11 +18,17 @@ class PostsController < ApplicationController
   def short_url
     @post = Post.find_by(unique_num: params[:unique_num])
     redirect_to post_path(@post)
+
   end
 
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    if Rails.env.development?
+      @post.ip_address= Net::HTTP.get(URI.parse('http://checkip.amazonaws.com/')).squish
+    else
+      @post.ip_address= request.remote_ip
+    end
     if @post.save
       redirect_to posts_path
     else
