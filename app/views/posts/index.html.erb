@@ -18,7 +18,7 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= "hot" if @hot_posts == post.id %><%= image_tag ('hot-2.png'), width: "90", height: "70" if @hot_posts.include?(post)%></td>
-        <td><%= post.unique_num %></td>
+        <td><p class=" m-3 d-flex justify-content-end align-content-end"><%= link_to "#{post.unique_num}", post.unique_num %></p></td>
         <td><%= post.categories.pluck(:name).join(',') %></td>
         <td><%= post.title %></td>
         <td><%= post.content %></td>

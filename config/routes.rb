@@ -6,12 +6,11 @@ Rails.application.routes.draw do
 
   root "posts#index"
 
-  resources :posts, path_names: { new: '1234', edit: '4321' } do
-    scope(path_names: { new: '5897', edit: '9752' }) do
-      resources :comments, path: '4854', expect: :show
-      end
+  resources :posts do
+    resources :comments, expect: :show
   end
   resources :categories
 
+  get ':unique_num', to: 'posts#short_url'
 end
 

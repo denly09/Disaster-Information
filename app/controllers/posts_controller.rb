@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   before_action :validate_post_owner, only: [:edit, :update, :destroy]
   before_action :set_categories
 
+
   def index
     @posts = Post.includes(:user, :categories).order(comments_count: :desc).all
     @hot_posts = Post.order(comments_count: :desc).limit(3).select{ |post| post.comments_count >= 1 }
@@ -11,6 +12,12 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @random = sprintf "%04d", rand(2 - 9999), unique: true
+  end
+
+  def short_url
+    @post = Post.find_by(unique_num: params[:unique_num])
+    redirect_to post_path(@post)
   end
 
   def create
@@ -23,12 +30,9 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
+  def show; end
 
-  end
-
-  def edit
-  end
+  def edit; end
 
   def update
     if @post.update(post_params)
@@ -48,12 +52,13 @@ class PostsController < ApplicationController
 
   private
 
+
   def set_post
     @post = Post.find(params[:id])
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :address, category_ids: [])
+    params.require(:post).permit(:title, :content, :address, :unique_num, category_ids: [])
   end
 
   def validate_post_owner
