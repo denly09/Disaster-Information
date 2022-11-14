@@ -1,5 +1,5 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :title, :content, :author, :comments_count
+  attributes :title, :created_at, :content, :author, :comments_count
 
   def created_at
     object.created_at.strftime("%F %H:%M:%S")
