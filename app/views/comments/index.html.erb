@@ -10,13 +10,19 @@
       <ul class="card-text ">
         <% @comments.each do |comment| %>
           <%= comment.content %>(<%= comment.created_at %>)
-          <div>
+          <div class="mb-4">
           <%= link_to 'edit', edit_post_comment_path(@post, comment), class: "btn btn-secondary" if @post.user == current_user %>
           <%= button_to 'delete', post_comment_path(@post, comment), method: :delete, class: "btn btn-danger" if @post.user == current_user %>
           </div>
         <% end %>
+        <div class="mb-4">
+          <%= link_to 'new comment', new_post_comment_path(@post), class: "btn btn-secondary" %>
+        </div>
       </ul>
     </div>
   </div>
 </div>
+
+<div class="mb-4">
 <%= link_to 'Back' ,posts_path, class: "btn btn-primary" %>
+</div>
