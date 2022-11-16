@@ -1,34 +1,44 @@
-<div class="container">
-  <div class="form-control">
-    <% if @post.errors.any? %>
-      <ul>
-        <% @post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    <% end %>
-<%= form_with model: @post do |form| %>
-  <div class="mb-2">
-    <%= form.label :category, style: "display: block" %>
-    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
+<%= form_with model: post, data: { controller: :location } do |form| %>
+  <div class="container">
+    <div class="form-control">
+      <% if @post.errors.any? %>
+        <ul>
+          <% @post.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <div class="mb-2">
+        <%= form.label :category, style: "display: block" %>
+        <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
+      </div>
+      <div class="mb-2">
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+      </div>
+      <div class="mb-2">
+        <%= form.label :content %>
+        <%= form.text_area :content %>
+      </div>
+      <div class="mb-3">
+        <%= form.label :address %>
+        <%= form.text_field :address %>
+      </div>
+      <div>
+        <%= form.file_field :image %>
+      </div>
+      <div>
+        <%= form.label :address_region_id %>
+        <%= form.collection_select :address_region_id,
+                                   Address::Region.all, :id, :name,
+                                   { prompt: 'pls select region' },
+                                   data: { location_target: 'selectedRegionId', action: 'change->location#fetchProvinces' } %>
+      </div>
+      <div>
+        <%= form.label :address_province_id %>
+        <%= form.collection_select :address_province_id, [], nil, nil, { prompt: 'pls select province' }, data: { location_target: 'selectProvinceId' } %>
+      </div>
+      <%= form.submit %>
+    </div>
   </div>
-  <div class="mb-2">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-  <div class="mb-2">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-  <div class="mb-3">
-    <%= form.label :address %>
-    <%= form.text_field :address%>
-  </div>
-  <div>
-    <%= form.file_field :image %>
-  </div>
-
-  <%= form.submit %>
 <% end %>
-  </div>
-</div>
