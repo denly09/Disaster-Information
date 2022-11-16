@@ -4,3 +4,4 @@ class Api::RegionsController < ApplicationController
     render json: regions, each_serializer: RegionSerializer
   end
 end
+
