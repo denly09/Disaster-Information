@@ -7,6 +7,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.includes(:user, :categories).order(comments_count: :desc).all
+    @posts = Post.includes(:user, :categories, :region, :province, :city_municipality, :barangay).order(comments_count: :desc).all
     @hot_posts = Post.order(comments_count: :desc).limit(3).select{ |post| post.comments_count >= 1 }
     respond_to do |format|
       format.html
