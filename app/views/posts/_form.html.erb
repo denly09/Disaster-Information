@@ -20,10 +20,6 @@
         <%= form.label :content %>
         <%= form.text_area :content %>
       </div>
-      <div class="mb-3">
-        <%= form.label :address %>
-        <%= form.text_field :address %>
-      </div>
       <div>
         <%= form.file_field :image %>
       </div>
@@ -31,12 +27,27 @@
         <%= form.label :address_region_id %>
         <%= form.collection_select :address_region_id,
                                    Address::Region.all, :id, :name,
-                                   { prompt: 'pls select region' },
-                                   data: { location_target: 'selectedRegionId', action: 'change->location#fetchProvinces' } %>
+                                   { prompt: 'Select Region' },
+                                   data: { location_target: 'selectedRegionId', action: 'change->location#fetchProvinces' }
+        %>
       </div>
       <div>
         <%= form.label :address_province_id %>
-        <%= form.collection_select :address_province_id, [], nil, nil, { prompt: 'pls select province' }, data: { location_target: 'selectProvinceId' } %>
+        <%= form.collection_select :address_province_id, [], nil, nil,
+                                   { prompt: 'Select Province/District' },
+                                   data: { location_target: 'selectProvinceId', action: 'change->location#fetchCityMunicipalities' } %>
+      </div>
+      <div>
+        <%= form.label :address_city_municipality_id %>
+        <%= form.collection_select :address_city_municipality_id, [], nil, nil,
+                                   { prompt: 'Select City/Municipality' },
+                                   data: { location_target: 'selectCityMunicipalityId', action: 'change->location#fetchBarangays' } %>
+      </div>
+      <div>
+        <%= form.label :address_barangay_id %>
+        <%= form.collection_select :address_barangay_id, [], nil, nil,
+                                   { prompt: 'Select Brgy' },
+                                   data: { location_target: 'selectBarangayId' } %>
       </div>
       <%= form.submit %>
     </div>
