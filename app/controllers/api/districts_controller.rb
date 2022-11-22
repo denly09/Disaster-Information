@@ -1,6 +1,6 @@
 class Api::DistrictsController < ApplicationController
   def index
-    region = Address::Region.find(params[:region_id])
+    region = Address::Region.find_by_id(params[:region_id])
     districts = region.districts
     render json: districts, each_serializer: DistrictSerializer
   end

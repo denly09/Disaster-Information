@@ -1,5 +1,5 @@
 class DistrictSerializer < ActiveModel::Serializer
-  attributes :name, :region, :id
+  attributes :name, :region, :id,
 
   def region
     object.region.name
